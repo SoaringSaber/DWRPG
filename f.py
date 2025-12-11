@@ -1,7 +1,6 @@
 # Keyboard Input Handling - f
 
 from pynput import keyboard
-import os
 import time
 
 listener = None
@@ -10,11 +9,16 @@ readKey = ""
 def getKey(key):
     try:
         global readKey
+        global keyType
         readKey = key
-        time.sleep(.1)
+        time.sleep(.025)
+        readKey = str(readKey.char)
+        keyType = "char"
         return False
     except AttributeError:
-        pass
+        readKey = key
+        keyType = "special"
+        return False
     
 def startListener():
     global listener
@@ -23,49 +27,54 @@ def startListener():
 
 def k():
     global readKey
-    startListener()
-    return readKey
+    reading = True
+    while reading:
+        startListener()
+        if keyType == "char":
+            if readKey == "p":
+                input("|! Pausing kb suppression... press ENTER to continue.")
+                return ""
+            else:
+                return readKey
+        else:
+            return readKey
 
 def kMove():
     global readKey
+    global keyType
     gettingKey = True
     while(gettingKey):
         startListener()
-        try:
-            moveKey = str(readKey)
-            if moveKey == "Key.up" or moveKey == "Key.down" or moveKey == "Key.left" or moveKey == "Key.right":
-                return moveKey
-            interactKey = readKey.char
-            if interactKey == "p" or interactKey == "z" or interactKey == "x":
-                return interactKey
-        except:
-            pass
-    return readKey
+        if keyType == "special":
+            readKey = str(readKey)
+            if readKey == "Key.up" or readKey == "Key.down" or readKey == "Key.left" or readKey == "Key.right":
+                return str(readKey)
+        elif keyType == "char":
+            if readKey == "z" or readKey == "x":
+                return readKey
+            elif readKey == "p":
+                input("|! Pausing kb suppression... press ENTER to continue.")
+                return "p"
 
 def kToContinue(text):
     print(text)
     k()
     
 def kNumber(text, rangeMin, rangeMax):
-    print(text)
+    if text != "":
+        print(text)
     global readKey
-    gettingKey = True
-    while(gettingKey):
+    global keyType
+    gettingNum = True
+    while(gettingNum):
         startListener()
-        try:        
-            int(readKey.char) + int(readKey.char)	# intentionally try to cause an error here muehehe
-            global numKey
-            numKey = int(readKey.char)
-            if numKey < rangeMin:
-                None
-            elif numKey > rangeMax:
-                None
-            else:
-                return numKey
-        except AttributeError:
-            pass
-        except ValueError:
-            pass
+        if keyType == "char":
+            try:
+                num = int(readKey)
+                if num >= rangeMin and num <= rangeMax:
+                    return num
+            except:
+                pass
 
 # print(kMove() + " pressed!!")
 # kToContinue("HUHHHH")
