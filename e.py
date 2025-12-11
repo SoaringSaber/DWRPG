@@ -2,14 +2,11 @@
 
 import b, d, f
 
-# Map data is stored here. It's also loaded here.
-
-# # MAP DATA # #
-
-# TESTING MAPS #
+# Map data is stored here. It's also loaded and made interactive to the user here as well.
+# Cool, huh?
 
 # DEVELOPER'S NOTE:
-# Now that I had a better way to deal with data, I should really work on having the same done to maps, huh?
+# Now that I had a better way to deal with Toon and Slot data, I should really work on having the same done to maps, huh?
 # Definitely would make maps a whole lot easier to import, huh?
 
 def testMapA():
@@ -359,4 +356,5 @@ def mapTesting():
     noclip = False
     global completeMach
     completeMach = []
+
     moveInMap()
