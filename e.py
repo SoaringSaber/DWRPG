@@ -2,12 +2,31 @@
 
 import b, d, f
 
-# Map data is stored here. It's also loaded and made interactive to the user here as well.
-# Cool, huh?
-
+# # ATTENTION!!! # #
+#####################################################################################################################################################################################################################
 # DEVELOPER'S NOTE:
-# Now that I had a better way to deal with Toon and Slot data, I should really work on having the same done to maps, huh?
-# Definitely would make maps a whole lot easier to import, huh?
+# This method of storing and loading maps will soon be deprecated, as maps will soon use a new system, which comes with a lot of changes on how zoomed in they are. Please refrain from making maps as of 12/16/2025.
+# If you do, however, want to conceptualize a map, please consider the player being able to move 2 spaces at a time, due to the map's ratio to the player and obstacles.
+
+# An example of how the map will look, the final product will not look like this.
+
+# _________________
+# |###############|
+# |#|M| |!| | | |#|
+# |#+-+-+-+-##+-+#|
+# |#| | | | ##|?|#|
+# |#+-+-+-+-##+-+#|
+# |#| | | | | | |#|
+# |#+-+-+-+-+-+-+#|
+# |#| | | | | | |#|
+# |#+-+-+-+-+-+-+#|
+# |@#XXX##########|
+# |_______________|
+
+# As you can see, there will still be a grid, with the plots starting at 0, 0 (marked by a "@"). Obstacles can go between the grid points.
+# Eventually, "different colored walls" support will be implemented, since I'm pretty sure I can wiggle attributes into this, which will make the map a bit harder to read.
+# However, I'm positive that this will make traversing maps WAY more interesting, and it allows me to have an easier time for mapmaking.
+#####################################################################################################################################################################################################################
 
 def testMapA():
     global mapID
@@ -358,3 +377,4 @@ def mapTesting():
     completeMach = []
 
     moveInMap()
+
