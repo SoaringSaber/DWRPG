@@ -1,0 +1,109 @@
+
+// ┌─┬─┐
+// │   │
+// ├ ┼ ┤
+// │   │
+// └─┴─┘
+//
+// ◄▲▼►
+	
+//  <?> This is something you noticed.
+//  <?> Also, it's something you've interacted with.
+//  <!> This is something that caught your attention.
+//  <!> This is also something that alarms or warns you.
+//  * I'm a narrator.
+//  (ASTRO) *These are my thoughts.
+//  (ASTRO): These are my words.
+
+// // Map plots are 7x4 characters.
+
+// Map grid visualizations (2x2)
+
+// | # # # # + /|\ + |
+// | # # # #   |||   |
+// | # # # #   \|/   |
+// | # # # # + <=> + |
+// | +     + .     . |
+// |   OBJ      o    |
+// |           /X\   |
+// | +     + .     . |
+
+// ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+// │ Header goes here, but I don't know what would go here, yet... I wonder what will! Only a matter of time |
+// │ - > < - - > < - - > < - - > < - - > < - - > < - - > < - - > < - - > < - - > < - - > < - - > < - - > < - |
+// │ +     + +     + +     + +     + +     + +     + +     + +     + +     + |                               |
+// │                                                                         |                               |
+// │                                                                         |                               |
+// │ +     + +     + +     + +     + +     + +     + +     + +     + +     + |                               |
+// │ +     + +     + +     + +     + +     + +     + +     + +     + +     + |                               |
+// │                                                                         | 1234567890123456 - xxx/xxx SP |
+// │                                                                         | [         xxx/xxx HP        ] |
+// │ +     + +     + +     + +     + +     + +     + +     + +     + +     + |                               |
+// │ +     + +     + +     + +     + +     + +     + +     + +     + +     + |                               |
+// │                                                                         | 1234567890123456 - xxx/xxx SP |
+// │                                                                         | [         xxx/xxx HP        ] |
+// │ +     + +     + +     + +     + +     + +     + +     + +     + +     + |                               |
+// │ +     + +     + +     + +     + +     + +     + +     + +     + +     + |                               |
+// │                                                                         | 1234567890123456 - xxx/xxx SP |
+// │                                                                         | [         xxx/xxx HP        ] |
+// │ +     + +     + +     + +     + +     + +     + +     + +     + +     + |                               |
+// │ +     + +     + +     + +     + .     . +     + +     + +     + +     + |                               |
+// │                                                                         | 1234567890123456 - xxx/xxx SP |
+// │                                                                         | [         xxx/xxx HP        ] |
+// │ +     + +     + +     + +     + .     . +     + +     + +     + +     + |                               |
+// │ +     + +     + +     + +     + +     + +     + +     + +     + +     + |                               |
+// │                                                                         |                               |
+// │                                                                         |                               |
+// │ +     + +     + +     + +     + +     + +     + +     + +     + +     + |                               |
+// │ +     + +     + +     + +     + +     + +     + +     + +     + +     + |                               |
+// │                                                                         |                               |
+// │                                                                         |                               |
+// │ +     + +     + +     + +     + +     + +     + +     + +     + +     + |                               |
+// │ +     + +     + +     + +     + +     + +     + +     + +     + +     + |                               |
+// │                                                                         |                               |
+// │                                                                         |                               |
+// │ +     + +     + +     + +     + +     + +     + +     + +     + +     + |                               |
+// │ +     + +     + +     + +     + +     + +     + +     + +     + +     + |                               |
+// │                                                                         |                               |
+// │                                                                         |                               |
+// │ +     + +     + +     + +     + +     + +     + +     + +     + +     + |                               |
+// └─────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+// | + + + + + + + + + + + + + + + + + + + + + +                             |                               |
+// | + + + + + + + + + + + + + + + + + + + + + +                             |                               |
+// | # # 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 0 0                             |                               |
+// | # # 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 0 0                             |                               |
+
+// Plots are 3x2, but generally, only the corners will be filled in.
+// The corners are marked with "+", but this will not be shown in-game unless debugging is on.
+
+// Map plot stylization / Air (Visible)
+// Map-defined floor color is the default.
+// | + +
+// | + +
+
+// Map plot stylization / Block
+// Map-defined wall color is the default.
+// | # #
+// | # #
+
+// Map plot stylization / Walls
+// Not all are listed, as joints and end-caps for every direction would need to be printed out.
+// Map-defined wall color is the default.
+// | + + | # + | # #
+// | # # | # + | # +
+
+// Player character stylization
+// Default color is undecided.
+// | +▲+
+// | / \
+	
+// Map plot stylization / Objective
+// Yellow is the default.
+// | + +
+// | + +
+
+// Map plot stylization / Machine
+// Asterisk lights red or green on completion.
+// | <*> | <*>
+// | [_] | [=]
