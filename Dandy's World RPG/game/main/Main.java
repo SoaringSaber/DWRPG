@@ -1,5 +1,6 @@
 package main;
 
+import terminal.KeyHandler;
 import terminal.TermWindow;
 
 public class Main {

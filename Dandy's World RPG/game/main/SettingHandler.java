@@ -1,6 +1,6 @@
 package main;
 
-public class SettingManager {
+public class SettingHandler {
 	
 	public static boolean typeOut = true;
 	public static double typeSpeed = 0.035;

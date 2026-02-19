@@ -1,7 +1,5 @@
 package terminal;
 
-import main.KeyHandler;
-
 public class Menu {
 	private static TermWindow console = null;
 	private static KeyHandler kh = null;

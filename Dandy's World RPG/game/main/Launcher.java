@@ -1,5 +1,6 @@
 package main;
 
+import map.MapHandler;
 import terminal.*;
 
 public class Launcher {
@@ -18,7 +19,7 @@ public class Launcher {
 									"│    ##   #   #####   #   ##        │                                                                     │" + "\n" +
 									"│      ####           ####          │                                                                     │" + "\n" +
 									"│          ##       ##            G │                                                                     │" + "\n" +
-									"│            #######                │                                                             V0.0.1a │" + "\n" +
+									"│            #######                │                                                             V0.0.2a │" + "\n" +
 									"└───────────────────────────────────┴─────────────────────────────────────────────────────────────────────┘";
     public static void main(String[] args) {
         // GPU Acceleration Properties
@@ -31,27 +32,37 @@ public class Launcher {
 	    console.addGameInput(kh);												// Tie the KeyHandler to the console.
 	    Menu.getTerminal(console, kh);											// Allow "Menus" to interface with the console.
 	    Main.getTerminal(console, kh);											// Allow the game to interface with the console.
+	    MapHandler.getTerminal(console, kh);									// Allow the map to interface with the console (temporarily).
 	    
-	    String[] mainOptions = {"~Continue Game", "New Game", "~Manage Saves", "~Options", "Quit Game"};
-	    Menu main = new Menu(1, mainOptions);
-	    int selected = main.interactUntilConfirmed(header);
-	    switch(selected) {
-	    case 0:
-	    	console.print("How.");
-	    	break;
-	    case 1:
-	    	console.print("Creating a new game.");
-	    	break;
-	    case 2:
-	    	console.print("Managing save games.");
-	    	break;
-	    case 3:
-	    	console.print("Changing settings.");
-	    	break;
-	    case 4:
-	    	console.print("Quitting the game...");
-	    	console.dispose();
-	    	break;
+	    boolean devTesting = true;
+	    
+	    if(!devTesting) {
+	    	String[] mainOptions = {"~Continue Game", "New Game", "~Manage Saves", "~Options", "Quit Game"};
+		    Menu main = new Menu(1, mainOptions);
+		    int selected = main.interactUntilConfirmed(header);
+		    switch(selected) {
+		    case 0:
+		    	console.print("How.");
+		    	break;
+		    case 1:
+		    	console.print("Creating a new game.");
+		    	break;
+		    case 2:
+		    	console.print("Managing save games.");
+		    	break;
+		    case 3:
+		    	console.print("Changing settings.");
+		    	break;
+		    case 4:
+		    	console.print("Quitting the game...");
+		    	console.dispose();
+		    	break;
+		    }
+	    } else {
+	    	// Dev-testing code goes here.
+	    	
+	    	MapHandler.devTest();
+	    	
 	    }
     }
 }

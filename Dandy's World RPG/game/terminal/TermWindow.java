@@ -25,7 +25,7 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
-import main.SettingManager;
+import main.SettingHandler;
 
 // TODO: Create javadoc for class.
 public class TermWindow extends JFrame {
@@ -162,7 +162,7 @@ public class TermWindow extends JFrame {
         appendText("\n");
     }
 	public void type(String text) {
-		if(SettingManager.typeOut) {
+		if(SettingHandler.typeOut) {
 			boolean coloring = false;
 			String getColor = null;
 			for(int i = 0; i < text.length(); i++) {
@@ -182,15 +182,15 @@ public class TermWindow extends JFrame {
 				} else {
 					if(s.equals(".") || s.equals("!") || s.equals("?")){
 						System.out.print(s);
-						wait(SettingManager.typeSpeed * 6);
+						wait(SettingHandler.typeSpeed * 6);
 					} else if (s.equals(",")) {
 						this.print(s);
-						wait(SettingManager.typeSpeed * 3);
+						wait(SettingHandler.typeSpeed * 3);
 					} else if(s.equals(" ")) {
 						this.print(s);
 					} else {
 						this.print(s);
-						wait(SettingManager.typeSpeed);
+						wait(SettingHandler.typeSpeed);
 					}
 				}
 			}
@@ -200,7 +200,7 @@ public class TermWindow extends JFrame {
 	}
 	public void type(int number) {
 		String text = number + "";
-		if(SettingManager.typeOut) {
+		if(SettingHandler.typeOut) {
 			boolean coloring = false;
 			String getColor = null;
 			for(int i = 0; i < text.length(); i++) {
@@ -220,15 +220,15 @@ public class TermWindow extends JFrame {
 				} else {
 					if(s.equals(".") || s.equals("!") || s.equals("?")){
 						System.out.print(s);
-						wait(SettingManager.typeSpeed * 6);
+						wait(SettingHandler.typeSpeed * 6);
 					} else if (s.equals(",")) {
 						this.print(s);
-						wait(SettingManager.typeSpeed * 3);
+						wait(SettingHandler.typeSpeed * 3);
 					} else if(s.equals(" ")) {
 						this.print(s);
 					} else {
 						this.print(s);
-						wait(SettingManager.typeSpeed);
+						wait(SettingHandler.typeSpeed);
 					}
 				}
 			}
@@ -238,7 +238,7 @@ public class TermWindow extends JFrame {
 	}
 	public void type(double number) {
 		String text = number + "";
-		if(SettingManager.typeOut) {
+		if(SettingHandler.typeOut) {
 			boolean coloring = false;
 			String getColor = null;
 			for(int i = 0; i < text.length(); i++) {
@@ -258,15 +258,15 @@ public class TermWindow extends JFrame {
 				} else {
 					if(s.equals(".") || s.equals("!") || s.equals("?")){
 						System.out.print(s);
-						wait(SettingManager.typeSpeed * 6);
+						wait(SettingHandler.typeSpeed * 6);
 					} else if (s.equals(",")) {
 						this.print(s);
-						wait(SettingManager.typeSpeed * 3);
+						wait(SettingHandler.typeSpeed * 3);
 					} else if(s.equals(" ")) {
 						this.print(s);
 					} else {
 						this.print(s);
-						wait(SettingManager.typeSpeed);
+						wait(SettingHandler.typeSpeed);
 					}
 				}
 			}
@@ -275,7 +275,7 @@ public class TermWindow extends JFrame {
 		}
 	}
 	public void typeln(String text) {
-		if(SettingManager.typeOut) {
+		if(SettingHandler.typeOut) {
 			boolean coloring = false;
 			String getColor = null;
 			for(int i = 0; i < text.length(); i++) {
@@ -295,15 +295,15 @@ public class TermWindow extends JFrame {
 				} else {
 					if(s.equals(".") || s.equals("!") || s.equals("?")){
 						System.out.print(s);
-						wait(SettingManager.typeSpeed * 6);
+						wait(SettingHandler.typeSpeed * 6);
 					} else if (s.equals(",")) {
 						this.print(s);
-						wait(SettingManager.typeSpeed * 3);
+						wait(SettingHandler.typeSpeed * 3);
 					} else if(s.equals(" ")) {
 						this.print(s);
 					} else {
 						this.print(s);
-						wait(SettingManager.typeSpeed);
+						wait(SettingHandler.typeSpeed);
 					}
 				}
 			}
@@ -314,7 +314,7 @@ public class TermWindow extends JFrame {
 	}
 	public void typeln(int number) {
 		String text = number + "";
-		if(SettingManager.typeOut) {
+		if(SettingHandler.typeOut) {
 			boolean coloring = false;
 			String getColor = null;
 			for(int i = 0; i < text.length(); i++) {
@@ -334,15 +334,15 @@ public class TermWindow extends JFrame {
 				} else {
 					if(s.equals(".") || s.equals("!") || s.equals("?")){
 						System.out.print(s);
-						wait(SettingManager.typeSpeed * 6);
+						wait(SettingHandler.typeSpeed * 6);
 					} else if (s.equals(",")) {
 						this.print(s);
-						wait(SettingManager.typeSpeed * 3);
+						wait(SettingHandler.typeSpeed * 3);
 					} else if(s.equals(" ")) {
 						this.print(s);
 					} else {
 						this.print(s);
-						wait(SettingManager.typeSpeed);
+						wait(SettingHandler.typeSpeed);
 					}
 				}
 			}
@@ -353,7 +353,7 @@ public class TermWindow extends JFrame {
 	}
 	public void typeln(double number) {
 		String text = number + "";
-		if(SettingManager.typeOut) {
+		if(SettingHandler.typeOut) {
 			boolean coloring = false;
 			String getColor = null;
 			for(int i = 0; i < text.length(); i++) {
@@ -373,15 +373,15 @@ public class TermWindow extends JFrame {
 				} else {
 					if(s.equals(".") || s.equals("!") || s.equals("?")){
 						System.out.print(s);
-						wait(SettingManager.typeSpeed * 6);
+						wait(SettingHandler.typeSpeed * 6);
 					} else if (s.equals(",")) {
 						this.print(s);
-						wait(SettingManager.typeSpeed * 3);
+						wait(SettingHandler.typeSpeed * 3);
 					} else if(s.equals(" ")) {
 						this.print(s);
 					} else {
 						this.print(s);
-						wait(SettingManager.typeSpeed);
+						wait(SettingHandler.typeSpeed);
 					}
 				}
 			}

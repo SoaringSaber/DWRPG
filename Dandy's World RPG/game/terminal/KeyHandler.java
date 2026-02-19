@@ -1,4 +1,4 @@
-package main;
+package terminal;
 
 import java.awt.event.*;
 import java.util.concurrent.LinkedBlockingQueue;
