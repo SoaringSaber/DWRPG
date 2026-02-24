@@ -5,6 +5,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class KeyHandler extends KeyAdapter {
 	private final LinkedBlockingQueue<Integer> keyQueue = new LinkedBlockingQueue<>();
+	
+	private boolean canMove = true;
 
 	@Override
     public void keyPressed(KeyEvent e) {
@@ -13,7 +15,7 @@ public class KeyHandler extends KeyAdapter {
     
 	@Override
     public void keyReleased(KeyEvent e) {
-    	// Does nothing right now.
+    	canMove = true;
     }
 
     // This runs on your Main Thread
@@ -72,4 +74,57 @@ public class KeyHandler extends KeyAdapter {
 			}
 		}
 	}
+    public String mapMakerKeys() {
+    	while(true) {
+			Integer input = this.getNextKey(); 
+			if(canMove) {
+				if(input == KeyEvent.VK_UP) {
+					canMove = false;
+					return "up";
+				}
+				if(input == KeyEvent.VK_LEFT) {
+					canMove = false;
+					return "left";
+				}
+				if(input == KeyEvent.VK_DOWN) {
+					canMove = false;
+					return "down";
+				}
+				if(input == KeyEvent.VK_RIGHT) {
+					canMove = false;
+					return "right";
+				}
+				if(input == KeyEvent.VK_1) {
+					return "air";
+				}
+				if(input == KeyEvent.VK_2) {
+					return "wall";
+				}
+				if(input == KeyEvent.VK_3) {
+					return "objective";
+				}
+				if(input == KeyEvent.VK_4) {
+					return "interactable";
+				}
+				if(input == KeyEvent.VK_5) {
+					return "trigger";
+				}
+				if(input == KeyEvent.VK_6) {
+					return "forcedMachine";
+				}
+				if(input == KeyEvent.VK_7) {
+					return "potentialMachine";
+				}
+				if(input == KeyEvent.VK_C) {
+					return "traversable";
+				}
+				if(input == KeyEvent.VK_F1) {
+					return "toggleView";		// Does nothing right now.
+				}
+				if(input == KeyEvent.VK_Z || input == KeyEvent.VK_ENTER) {
+					return "info";
+				}
+			}
+		}
+    }
 }

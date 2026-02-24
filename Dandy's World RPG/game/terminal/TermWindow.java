@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseWheelListener;
 import java.net.URL;
 
 import javax.swing.BorderFactory;
@@ -13,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
@@ -78,6 +80,10 @@ public class TermWindow extends JFrame {
         scrollPane.setBorder(BorderFactory.createEmptyBorder());									// Removes border.
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);		// Removes scroll bar.
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);	// Removes scroll bar.
+        for (MouseWheelListener mwl : scrollPane.getMouseWheelListeners()) {						// Removes mouse scroll wheel function.
+            scrollPane.removeMouseWheelListener(mwl);
+        }
+        
         add(scrollPane);																			// Adds the psuedo-console to the window.
 
         // // Notifications
@@ -119,14 +125,14 @@ public class TermWindow extends JFrame {
     }
 	
 	// TODO: Create javadoc for wait methods.
-	public static void wait(int seconds) {
+	public void wait(int seconds) {
 		try {
 			Thread.sleep(seconds * 1000);
 		} catch (InterruptedException e) {
 			System.out.println("..!");
 		}
 	}
-	public static void wait(double seconds) {
+	public void wait(double seconds) {
 		try {
 			Thread.sleep((int)(seconds * 1000));
 		} catch (InterruptedException e) {
@@ -152,6 +158,10 @@ public class TermWindow extends JFrame {
 	public void println(String text) {
         parseAndAppend(text);
         appendText("\n");
+    }
+	public void println(String text, boolean moveWindow) {
+        parseAndAppend(text);
+        appendTextStaticPosition("\n");
     }
 	public void println(int number) {
         parseAndAppend(number + "");
@@ -472,20 +482,15 @@ public class TermWindow extends JFrame {
 			currentAnsiFg = Color.WHITE;
 			currentAnsiBg = new Color(20, 20, 20);
 			isBold = isItalic = isInverse = false;
-		} 
-		else if (code.equals("1"))  isBold = true;
+		} else if (code.equals("1"))  isBold = true;
 		else if (code.equals("22")) isBold = false;
 		else if (code.equals("3"))  isItalic = true;
 		else if (code.equals("23")) isItalic = false;
 		else if (code.equals("7"))  isInverse = true;
 		else if (code.equals("27")) isInverse = false;
-
-		// Foreground RGB (38;2;R;G;B)
 		else if (code.startsWith("38;2;")) {
 			currentAnsiFg = parseRGB(code);
-		}
-		// Background RGB (48;2;R;G;B)
-		else if (code.startsWith("48;2;")) {
+		} else if (code.startsWith("48;2;")) {
 			currentAnsiBg = parseRGB(code);
 		}
 	}
@@ -513,17 +518,32 @@ public class TermWindow extends JFrame {
 	    } catch (BadLocationException e) { e.printStackTrace(); }
 	    display.setCaretPosition(doc.getLength());
 	}
+	private void appendTextStaticPosition(String msg) {
+	    StyledDocument doc = display.getStyledDocument();
+	    Style style = display.addStyle("CurrentStyle", null);
+	    
+	    // Determine final colors based on Inverse state
+	    Color finalFg = isInverse ? currentAnsiBg : currentAnsiFg;
+	    Color finalBg = isInverse ? currentAnsiFg : currentAnsiBg;
+
+	    StyleConstants.setForeground(style, finalFg);
+	    StyleConstants.setBackground(style, finalBg);
+	    StyleConstants.setBold(style, isBold);
+	    StyleConstants.setItalic(style, isItalic);
+
+	    try {
+	        doc.insertString(doc.getLength(), msg, style);
+	    } catch (BadLocationException e) { e.printStackTrace(); }
+	    display.setCaretPosition(0);
+	}
 	
 	public void clear() {
-		this.reset();
+		display.setText("");
 	}
 	public void reset() {
-	    // 1. Wipe the text display
 	    display.setText("");
-	    
-	    // 2. Reset all ANSI state variables to default
 	    currentAnsiFg = Color.WHITE;
-	    currentAnsiBg = new Color(20, 20, 20); // Your default dark background
+	    currentAnsiBg = new Color(20, 20, 20);
 	    isBold = false;
 	    isItalic = false;
 	    isInverse = false;
@@ -533,5 +553,18 @@ public class TermWindow extends JFrame {
 	public void setBackground(int r, int g, int b) {
 		bg_r = r; bg_g = g; bg_b = b;
 		display.setBackground(new Color(bg_r, bg_g, bg_b));
+		currentAnsiBg = new Color(bg_r, bg_g, bg_b);
 	}
+	public void setTextColor(Color col) {
+		currentAnsiFg = col;
+	}
+	
+	public String getTextInput(String text) {
+		return JOptionPane.showInputDialog(null, text);
+	}
+	public boolean getYesNo(String text) {
+		int choice = JOptionPane.showConfirmDialog(null, text, "", JOptionPane.YES_NO_OPTION);
+	    return choice == JOptionPane.YES_OPTION;
+	}
+	
 }

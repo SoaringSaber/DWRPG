@@ -48,8 +48,8 @@ public class Tile {
 		this.isTraversable = isTraversable;
 		this.plotType = plotType;
 		
-		top		= "____";
-		bottom	= "____";
+		setTopString(topString);
+		setBottomString(bottomString);
 		
 		defaultFloorColor = "";
 		defaultWallColor = "";
@@ -61,39 +61,57 @@ public class Tile {
 	
 	public void setString(String str) {
 		if(str.length() == 4) {
-			this.top = str.substring(0, 2);
-			this.bottom = str.substring(2, 4);
+			this.top = "_" + parseAir(str.substring(0, 1)) + "_" + parseAir(str.substring(1, 2));
+			this.bottom = "_" + parseAir(str.substring(2, 3)) + "_" + parseAir(top.substring(3, 4));
 		} else if(str.length() == 6) {
-			this.top = str.substring(0, 3);
-			this.bottom = str.substring(3, 6);
+			this.top = "_" + str.substring(0, 3);
+			this.bottom = "_" + str.substring(3, 6);
 		} else if(str.length() == 8) {
-					this.top = str.substring(0, 4);
-					this.bottom = str.substring(4, 8);
+			this.top = str.substring(0, 4);
+			this.bottom = str.substring(4, 8);
 		} else {
 			System.out.println("Error: Cannot set a string value with an argument other than a String with a length of 4, 6, or 8 characters.");
 		}
 	}
 	
+	public void setTopString(String str) {
+		if(str.length() == 2) {
+			this.top = "_" + parseAir(str.substring(0, 1)) + "_" + parseAir(str.substring(1, 2));
+		} else if(str.length() == 3) {
+			this.top = "_" + str;
+		} else if(str.length() == 4) {
+			this.top = str;
+		} else {
+			this.top = "____";
+			System.out.println("Error: Cannot set a string value with an argument other than a String with a length of 4, 6, or 8 characters.");
+		}
+	}
+	
+	public void setBottomString(String str) {
+		if(str.length() == 2) {
+			this.bottom = "_" + parseAir(str.substring(0, 1)) + "_" + parseAir(str.substring(1, 2));
+		} else if(str.length() == 3) {
+			this.bottom = "_" + str.substring(0, 3);
+		} else if(str.length() == 4) {
+			this.bottom = str.substring(0, 4);
+		} else {
+			this.bottom = "____";
+			System.out.println("Error: Cannot set a string value with an argument other than a String with a length of 4, 6, or 8 characters.");
+		}
+	}
+	
 	public String getTop() {
-		if(top.length() == 2) {
-			return " " + parseAir(top.substring(0, 1)) + " " + parseAir(top.substring(1, 2));
-		} else if(top.length() == 3) {
-			return " " + parseAir(top);
-		} else if(top.length() == 4) {
+		if(top.length() == 4) {
 			return parseAir(top);
 		}
-		return "No";
+		return "ERR!";
 	}
 	
 	public String getBottom() {
-		if(bottom.length() == 2) {
-			return " " + parseAir(bottom.substring(0, 1)) + " " + parseAir(bottom.substring(1, 2));
-		} else if(bottom.length() == 3) {
-			return " " + parseAir(bottom);
-		} else if(bottom.length() == 4) {
+		if(bottom.length() == 4) {
 			return parseAir(bottom);
 		}
-		return "No";
+		return "ERR!";
 	}
 	
 	private String parseAir(String str) {

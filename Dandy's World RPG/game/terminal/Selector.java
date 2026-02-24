@@ -1,6 +1,6 @@
 package terminal;
 
-public class Menu {
+public class Selector {
 	private static TermWindow console = null;
 	private static KeyHandler kh = null;
 	public static void getTerminal(TermWindow c, KeyHandler k) {
@@ -21,14 +21,14 @@ public class Menu {
 	private int selected;
 	private boolean confirmed;
 	
-	public Menu() {
+	public Selector() {
 		// menuType = 1;
 		String[] error = {"Error! Default menu options!"};
 		options = error;
 		selected = 0;
 		confirmed = false;
 	}
-	public Menu(int menuType, String[] options) {
+	public Selector(int menuType, String[] options) {
 		// this.menuType = menuType;
 		this.options = options;
 		
